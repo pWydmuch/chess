@@ -15,42 +15,16 @@ final class King extends ChessPiece {
 
     @Override
     Set<Field> possibleMoves() {
-        int moveUp = this.currentPosition.row() - 1;
-        int moveDown = this.currentPosition.row() + 1;
-        int moveRight = this.currentPosition.col() + 1;
-        int moveLeft = this.currentPosition.col() - 1;
-        Set<Field> fieldsOfPossibleDirection = new HashSet<>();
-
-        Field currentPosition = this.currentPosition;
-        int row = currentPosition.row();
-        int col = currentPosition.col();
-        boolean canGoUp = ChessPieceFieldValidator.isValid(moveUp, col);
-        boolean canGoDown = ChessPieceFieldValidator.isValid(moveDown, col);
-        boolean canGoRight = ChessPieceFieldValidator.isValid(row, moveRight);
-        boolean canGoLeft = ChessPieceFieldValidator.isValid(row, moveLeft);
-        boolean canGoUpLeft = ChessPieceFieldValidator.isValid(moveUp, moveLeft);
-        boolean canGoUpRight = ChessPieceFieldValidator.isValid(moveUp, moveRight);
-        boolean canGoDownLeft = ChessPieceFieldValidator.isValid(moveDown, moveLeft);
-        boolean canGoDownRight = ChessPieceFieldValidator.isValid(moveDown, moveRight);
-
-        if(canGoUp) {
-            fieldsOfPossibleDirection.add(new Field(moveUp, col));
-        }else if(canGoDown) {
-            fieldsOfPossibleDirection.add(new Field(moveDown, col));
-        }else if(canGoRight) {
-            fieldsOfPossibleDirection.add(new Field(row, moveRight));
-        }else if(canGoLeft) {
-            fieldsOfPossibleDirection.add(new Field(row, moveLeft));
-        }else if(canGoUpLeft) {
-            fieldsOfPossibleDirection.add(new Field(moveUp, moveLeft));
-        }else if(canGoUpRight) {
-            fieldsOfPossibleDirection.add(new Field(moveUp, moveRight));
-        }else if(canGoDownLeft) {
-            fieldsOfPossibleDirection.add(new Field(moveDown, moveLeft));
-        }else if(canGoDownRight) {
-            fieldsOfPossibleDirection.add(new Field(moveDown, moveRight));
+        var fieldsOfPossibleMoves = new HashSet<Field>();
+        int currentRow = currentPosition.row();
+        int currentCol = currentPosition.col();
+        for (var row = currentRow - 1; row <= currentRow + 1; row++) {
+            for (var column = currentCol - 1; column <= currentCol + 1; column++) {
+                if (ChessPieceFieldValidator.isValid(row, column)) {
+                    fieldsOfPossibleMoves.add(new Field(row, column));
+                }
+            }
         }
-
-        return fieldsOfPossibleDirection;
+        return fieldsOfPossibleMoves;
     }
 }

@@ -12,18 +12,4 @@ public record Field(int row, int col) {
                  throw new IllegalArgumentException("Field coordinates must be in range [0, 8]");
              }
      }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Field field = (Field) o;
-        return row == field.row && col == field.col;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, col);
-    }
-
 }
