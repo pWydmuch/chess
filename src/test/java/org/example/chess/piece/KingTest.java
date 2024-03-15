@@ -1,4 +1,7 @@
-package org.example.chess;
+package org.example.chess.piece;
+
+import org.example.chess.Board;
+import org.example.chess.Field;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +15,7 @@ class KingTest {
     void whenGameStartsKingCannotMove() {
         var king = new King(Color.WHITE, new Field(0, 4));
         var board = new Board();
-        Set<Field> fields = king.possibleMoves(board);
+        Set<Field> fields = king.possibleMoves();
         assertThat(fields).isEmpty();
     }
 }

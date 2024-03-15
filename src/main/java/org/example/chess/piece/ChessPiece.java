@@ -1,11 +1,14 @@
-package org.example.chess;
+package org.example.chess.piece;
+
+import org.example.chess.Board;
+import org.example.chess.Field;
 
 import java.util.Set;
 
 enum Color {
     WHITE, BLACK
 }
-sealed abstract public class ChessPiece permits King {
+sealed abstract public class ChessPiece permits King, Queen {
     Color color;
     Field currentPosition;
     ChessPiece(Color color, Field currentPosition) {
@@ -15,5 +18,5 @@ sealed abstract public class ChessPiece permits King {
     void move(Field field) {
         currentPosition = field;
     };
-    abstract Set<Field> possibleMoves(Board board);
+    abstract Set<Field> possibleMoves();
 }
