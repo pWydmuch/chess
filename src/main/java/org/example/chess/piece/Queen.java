@@ -33,10 +33,10 @@ final class Queen extends ChessPiece {
         return fieldsOfPossibleMoves;
     }
 
-    private Set<Field> diagonalMoves(int xDirection, int yDirection) {
+    private Set<Field> diagonalMoves(int yDirection, int xDirection) {
         var possibleMoves = new HashSet<Field>();
         for (int i = currentPosition.row(), j = currentPosition.col();
-             ChessPieceFieldValidator.isValid(i, j); i += xDirection, j += yDirection) {
+             ChessPieceFieldValidator.isValid(i, j); i += yDirection, j += xDirection) {
             possibleMoves.add(new Field(i, j));
         }
         return possibleMoves;
