@@ -25,19 +25,18 @@ final class Queen extends ChessPiece {
             fieldsOfPossibleMoves.add(new Field(i, currentCol));
         });
 
-        for (var xDirection = -1; xDirection <= 1; xDirection++) {
-            for (var yDirection = -1; yDirection <= 1; yDirection++) {
-                fieldsOfPossibleMoves.addAll(addDiagonalMoves(xDirection, yDirection));
-            }
-        }
+        fieldsOfPossibleMoves.addAll(diagonalMoves(1, 1));
+        fieldsOfPossibleMoves.addAll(diagonalMoves(1, -1));
+        fieldsOfPossibleMoves.addAll(diagonalMoves(-1, 1));
+        fieldsOfPossibleMoves.addAll(diagonalMoves(-1, -1));
 
         return fieldsOfPossibleMoves;
     }
 
-    private Set<Field> addDiagonalMoves(int xDirectionX, int  yDirection) {
+    private Set<Field> diagonalMoves(int xDirection, int yDirection) {
         var possibleMoves = new HashSet<Field>();
         for (int i = currentPosition.row(), j = currentPosition.col();
-             ChessPieceFieldValidator.isValid(i, j); i += xDirectionX, j += yDirection) {
+             ChessPieceFieldValidator.isValid(i, j); i += xDirection, j += yDirection) {
             possibleMoves.add(new Field(i, j));
         }
         return possibleMoves;
