@@ -21,8 +21,12 @@ final class Queen extends ChessPiece {
         int currentCol = currentPosition.col();
 
         IntStream.range(0, BOARD_SIZE).forEach(i -> {
-            fieldsOfPossibleMoves.add(new Field(currentRow, i));
-            fieldsOfPossibleMoves.add(new Field(i, currentCol));
+            if (i != currentRow) {
+                fieldsOfPossibleMoves.add(new Field(i, currentCol));
+            }
+            if (i != currentCol) {
+                fieldsOfPossibleMoves.add(new Field(currentRow, i));
+            }
         });
 
         fieldsOfPossibleMoves.addAll(diagonalMoves(1, 1));
