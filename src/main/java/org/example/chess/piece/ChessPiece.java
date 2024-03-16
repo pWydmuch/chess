@@ -8,7 +8,7 @@ import java.util.Set;
 enum Color {
     WHITE, BLACK
 }
-sealed abstract public class ChessPiece permits King, Queen {
+sealed abstract public class ChessPiece permits King, Queen, Horse, Pawn {
     Color color;
     Field currentPosition;
     ChessPiece(Color color, Field currentPosition) {
