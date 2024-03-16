@@ -19,7 +19,7 @@ final class Pawn extends ChessPiece{
         Set<Field> fieldsOfPossibleMoves = new HashSet<>();
         int row = currentPosition.row();
         int col = currentPosition.col();
-        int moves = isAlreadyMoved ? 1 : 2;
+        int moves = this.isAlreadyMoved ? 1 : 2;
         for (int i = 1; i <= moves; i++) {
             if(ChessPieceFieldValidator.isValid(row + i, col)) {
                 fieldsOfPossibleMoves.add(new Field(row + i, col));
